@@ -17,5 +17,10 @@ namespace buildxact_supplies.Models
         /// Not guaranteed in AUD.
         /// </summary>
         public Money Price { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id}, {Description}, {Price:C2}";
+        }
     }
 }
