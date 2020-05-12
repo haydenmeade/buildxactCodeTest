@@ -6,7 +6,13 @@ namespace SuppliesPriceLister
     {
         static void Main(string[] args)
         {
-            // Your solution begins here
+            // Read the data.
+            var csvReader = new CsvSupplyReader();
+            var jsonReader = new JsonSupplyReader();
+
+            // Combine the supplies.
+
+            // Convert to AUD -> Sort -> Print.
         }
     }
 }
