@@ -1,18 +1,20 @@
 ﻿using buildxact_supplies.Models;
-using Newtonsoft.Json.Linq;
+using CsvHelper;
 using NodaMoney;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 
-namespace buildxact_supplies.Readers
+namespace buildxact_supplies.Readers.Csv
 {
 
     /// <summary>
     /// Supply reader for json files.
     /// </summary>
-    public class JsonSupplyReader : ISupplyReader
+    public class CsvSupplyReader : ISupplyReader
     {
-        public JsonSupplyReader()
+        public CsvSupplyReader()
         {
         }
 
@@ -27,13 +29,13 @@ namespace buildxact_supplies.Readers
         /// </returns>
         public IEnumerable<ISupply> ReadSupplies(string fp, Currency currency)
         {
-            var jsonFile = System.IO.File.ReadAllText(fp);
-            var jobject = JObject.Parse(jsonFile);
-            // TODO currency input.
-            return jobject["partners"].Children()
-                                      .SelectMany(j => j["supplies"])
-                                      .Select(j => j.ToObject<SupplyJson>())
-                                      .ToList();
+            using (var reader = new StreamReader(fp))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                csv.Configuration.RegisterClassMap(new SupplyMap(currency));
+                return csv.GetRecords<Supply>().ToList();
+            }
+
         }
     }
 }

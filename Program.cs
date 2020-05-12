@@ -1,5 +1,7 @@
 ﻿using buildxact_supplies.Models;
 using buildxact_supplies.Readers;
+using buildxact_supplies.Readers.Csv;
+using buildxact_supplies.Readers.Json;
 using Microsoft.Extensions.Configuration;
 using NodaMoney;
 using System;

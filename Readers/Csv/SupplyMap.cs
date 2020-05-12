@@ -5,7 +5,7 @@ using CsvHelper.TypeConversion;
 using NodaMoney;
 using System.Globalization;
 
-namespace buildxact_supplies.Readers
+namespace buildxact_supplies.Readers.Csv
 {
     /// <summary>
     /// Mapping class for <see cref="Supply"/> class.
