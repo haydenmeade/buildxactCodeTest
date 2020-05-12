@@ -1,4 +1,6 @@
-﻿1. Inspect data and create model classes
+﻿## Plan
+
+1. Inspect data and create model classes
  -- NodaMoney for currency handling
 
 2. Create model reader interface and classes. 
@@ -13,3 +15,8 @@
 Keep in mind:
 Commented code and process
 Keep it simple 
+
+
+## Process
+
+Data is different, will need interface with 2 classes
