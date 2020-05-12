@@ -1,3 +1,5 @@
+![.NET Core](https://github.com/haydenmeade/buildxactCodeTest/workflows/.NET%20Core/badge.svg)
+
 ## Requirements
 You've been provided with the shell of a .NET Core console application with two sample inputs.
 
