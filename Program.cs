@@ -1,5 +1,5 @@
-﻿using buildxact_supplies.Models;
-using buildxact_supplies.Readers;
+﻿using buildxact_supplies.Extensions;
+using buildxact_supplies.Models;
 using buildxact_supplies.Readers.Csv;
 using buildxact_supplies.Readers.Json;
 using Microsoft.Extensions.Configuration;
@@ -29,13 +29,10 @@ namespace SuppliesPriceLister
             combinedSupplies.AddRange(new CsvSupplyReader().ReadSupplies("humphries.csv", Currency.FromCode("AUD")));
             combinedSupplies.AddRange(new JsonSupplyReader().ReadSupplies("megacorp.json", Currency.FromCode("USD")));
 
-            // AUD to USD exchanger.
-            var aud = Currency.FromCode("AUD");
-            var usd = Currency.FromCode("USD");
-            var exch = new ExchangeRate(aud, usd, audToUsd);
-
-            // Convert all the prices to AUD if needed.
-            combinedSupplies.ForEach(s => s.Price = s.Price.Currency == aud ? s.Price : exch.Convert(s.Price));
+            // Convert prices to AUD.
+            combinedSupplies.ConvertPricesToBase(new ExchangeRate(Currency.FromCode("AUD"),
+                                                                  Currency.FromCode("USD"),
+                                                                  audToUsd));
 
             // Output the supplies in price order.
             foreach (ISupply s in combinedSupplies.OrderByDescending(s => s.Price))
