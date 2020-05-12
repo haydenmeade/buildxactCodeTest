@@ -1,6 +1,8 @@
 ﻿using buildxact_supplies.Models;
+using Newtonsoft.Json.Linq;
 using NodaMoney;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace buildxact_supplies.Readers
 {
@@ -25,7 +27,13 @@ namespace buildxact_supplies.Readers
         /// </returns>
         public IEnumerable<ISupply> ReadSupplies(string fp, Currency currency)
         {
-            throw new System.NotImplementedException();
+            var jsonFile = System.IO.File.ReadAllText(fp);
+            var jobject = JObject.Parse(jsonFile);
+            // TODO currency input.
+            return jobject["partners"].Children()
+                                      .SelectMany(j => j["supplies"])
+                                      .Select(j => j.ToObject<SupplyJson>())
+                                      .ToList();
         }
     }
 }
