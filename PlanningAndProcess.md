@@ -20,3 +20,6 @@ Keep it simple
 
 Data is different, will need interface with 2 classes
 I don't like having the 2 classes in the end. I want to implement some custom json reading.
+
+# Improvements
+I should extract the conversion logic from main to be able to test it.
