@@ -2,15 +2,15 @@
 using NodaMoney;
 using System.Collections.Generic;
 
-namespace SuppliesPriceLister
+namespace buildxact_supplies.Readers
 {
 
     /// <summary>
     /// Supply reader for json files.
     /// </summary>
-    public class CsvSupplyReader : ISupplyReader
+    public class JsonSupplyReader : ISupplyReader
     {
-        public CsvSupplyReader()
+        public JsonSupplyReader()
         {
         }
 

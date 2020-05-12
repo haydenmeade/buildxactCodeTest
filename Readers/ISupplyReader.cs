@@ -2,7 +2,7 @@
 using NodaMoney;
 using System.Collections.Generic;
 
-namespace SuppliesPriceLister
+namespace buildxact_supplies.Readers
 {
     /// <summary>
     /// Describes a reader of supply data.

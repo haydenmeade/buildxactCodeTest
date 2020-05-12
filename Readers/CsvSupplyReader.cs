@@ -1,16 +1,20 @@
 ﻿using buildxact_supplies.Models;
+using CsvHelper;
 using NodaMoney;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 
-namespace SuppliesPriceLister
+namespace buildxact_supplies.Readers
 {
 
     /// <summary>
     /// Supply reader for json files.
     /// </summary>
-    public class JsonSupplyReader : ISupplyReader
+    public class CsvSupplyReader : ISupplyReader
     {
-        public JsonSupplyReader()
+        public CsvSupplyReader()
         {
         }
 
@@ -25,7 +29,13 @@ namespace SuppliesPriceLister
         /// </returns>
         public IEnumerable<ISupply> ReadSupplies(string fp, Currency currency)
         {
-            throw new System.NotImplementedException();
+            using (var reader = new StreamReader(fp))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                csv.Configuration.RegisterClassMap(new SupplyMap(currency));
+                return csv.GetRecords<Supply>().ToList();
+            }
+
         }
     }
 }
