@@ -22,4 +22,12 @@ Data is different, will need interface with 2 classes
 I don't like having the 2 classes in the end. I want to implement some custom json reading.
 
 # Improvements
-I should extract the conversion logic from main to be able to test it.
+
+Add more unit tests
+Improve the readers
+ -- Extract file reading to a dependency so the classes are testable.
+Overall there are some missing comments on the classes 
+Class inputs should be verified
+It would be nice to have some sort of ReaderFactory, this would allow the Program logic to be cleaned up a bit.
+Exchange rate logic could be improved if there are more exchange rates needed.
+Readers could be async, but doesn't really need to be done in this console application.

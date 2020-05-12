@@ -18,8 +18,13 @@ namespace buildxact_supplies.Models
         /// </summary>
         public Money Price { get; set; }
 
+        /// <summary>
+        /// Override ToString for printing the supply to console.
+        /// Prices will be to the nearest cent.
+        /// </summary>
         public override string ToString()
         {
+            // All prices must be shown to the nearest cent.
             return $"{Id}, {Description}, {Price:C2}";
         }
     }

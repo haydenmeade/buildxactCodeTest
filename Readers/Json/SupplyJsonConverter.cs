@@ -7,9 +7,17 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace buildxact_supplies.Readers.Json
 {
-    class SupplyJsonConverter : JsonConverter<ISupply>
+    /// <summary>
+    /// Converts a json to a <see cref="ISupply"/> instance.
+    /// </summary>
+    public class SupplyJsonConverter : JsonConverter<ISupply>
     {
         private Currency _currency;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="currency">Currency that is in the Json file.</param>
         public SupplyJsonConverter(Currency currency)
         {
             _currency = currency;
@@ -40,6 +48,9 @@ namespace buildxact_supplies.Readers.Json
                 Units = (string)jo["uom"]
             };
         }
+
+        // No write implemented.
+        public override bool CanWrite => false;
 
         public override void WriteJson(JsonWriter writer, [AllowNull] ISupply value, JsonSerializer serializer)
         {

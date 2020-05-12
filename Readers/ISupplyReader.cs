@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace buildxact_supplies.Readers
 {
     /// <summary>
-    /// Describes a reader of supply data.
+    /// Describes a reader of <see cref="ISupply"/> data.
     /// </summary>
     public interface ISupplyReader
     {
