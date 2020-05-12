@@ -16,7 +16,6 @@ Keep in mind:
 Commented code and process
 Keep it simple 
 
-
 ## Process
 
 Data is different, will need interface with 2 classes
