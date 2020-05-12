@@ -3,6 +3,7 @@ using buildxact_supplies.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NodaMoney;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace SuppliesPriceLister.UnitTest
 {
@@ -23,6 +24,7 @@ namespace SuppliesPriceLister.UnitTest
             //
             // Arrange.
             //
+            CultureInfo.CurrentCulture = new CultureInfo("en-au");
 
             // Single aud supply.
             var audSupply = new Supply
